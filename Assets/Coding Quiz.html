@@ -13,17 +13,24 @@
         <div id="question-container">
             <div id="questions" class="hide"></div>
             <div id="answer-choices" class="btn-grid hide">
-                <button class="answer-btns"></button>
-                <button class="answer-btns"></button>
-                <button class="answer-btns"></button>
-                <button class="answer-btns"></button>
+                <div class="buttons">
+                    <button class ="choice" id="A" onclick="checkAnswer('a')"></button>
+                    <button class ="choice" id="B" onclick="checkAnswer('b')"></button>
+                    <button class ="choice" id="C" onclick="checkAnswer('c')"></button>
+                    <button class ="choice" id="D" onclick="checkAnswer('d')"></button>
+                </div>
             </div>
         </div>
         <div class="start">
             <button id="start-btn">Start!</button>
-            <div id="timer"></div>
+            <div id="timer" class="hide">
+                <div id="seconds"></div>
+            </div>
         </div>
-        <div class="results hide"></div>
+        <div class="results hide">
+            <div id="currentScore"></div>
+            <input id="initials" type="submit" class="hide">
+        </div>
     </div>
 <script src="Coding Quiz.js"></script>
 </body>
