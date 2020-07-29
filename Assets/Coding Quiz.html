@@ -10,28 +10,29 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div id="question-container">
-            <div id="questions" class="hide"></div>
-            <div id="answer-choices" class="btn-grid hide">
+        <div id="questions-container" class="hide">
+            <div id="quizQuestions">asdf</div>
+            <div id="answer-choices" class="btn-grid">
                 <div class="buttons">
-                    <button class ="choice" id="A" onclick="checkAnswer('a')"></button>
-                    <button class ="choice" id="B" onclick="checkAnswer('b')"></button>
-                    <button class ="choice" id="C" onclick="checkAnswer('c')"></button>
-                    <button class ="choice" id="D" onclick="checkAnswer('d')"></button>
+                    <button class ="choice" id="A" onclick="checkAnswer('a')">asdf</button>
+                    <button class ="choice" id="B" onclick="checkAnswer('b')">asdf</button>
+                    <button class ="choice" id="C" onclick="checkAnswer('c')">adf</button>
+                    <button class ="choice" id="D" onclick="checkAnswer('d')">asdf</button>
+                    <button class="choice" id="nextButton">Next</button>
                 </div>
             </div>
         </div>
         <div class="start">
             <button id="start-btn">Start!</button>
             <div id="timer" class="hide">
-                <div id="seconds"></div>
+                <div id="secondsLeft"></div>
             </div>
         </div>
-        <div class="results hide">
-            <div id="currentScore"></div>
-            <input id="initials" type="submit" class="hide">
+        <div class="results hide" id="showResults">
+            <div id="currentScore">laskdj</div>
+            <input id="initials" type="submit" value="Your Initials" onclick="submitInitials()">
         </div>
     </div>
-<script src="Coding Quiz.js"></script>
+<script src="Coding Quiz.COPY.js"></script>
 </body>
 </html>

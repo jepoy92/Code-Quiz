@@ -1,55 +1,4 @@
-var questions = [
-    {
-    currentQuestion: "What is Javascript?",
-    answer: {
-        a: "A scripting or programming language that allows you to implement complex features on web pages",
-        b: "A cascading style sheet used to manipulate HTML code",
-        c: "A secret menu item from Starbucks",
-        d: "A library of code designed to simpfly HTML DOM tree traversal"
-    },
-    correctAnswer:"a"
-} ,
-{
-    currentQuestion: "What is const?",
-    answer: {
-        a: "A shorthand for 'continue' in video games",
-        b: "Any variable that if declared can be updated or changed within the whole window",
-        c: "A variable that once declared can not be redecalred within the whole window",
-        d: "A variable that if declared can be updated or redeclared within the window but not inside its scope "
-    },
-    correctAnswer: "c"
-} ,
-{
-    currentQuestion: "What is the correct html code to insert a line break?",
-    answer: {
-        a: "<break>",
-        b: "<lb>",
-        c: "<bread>",
-        d: "<br>"
-    },
-    correctAnswer: "d"
-} ,
-{
-    currentQuestion: "What is console.log?",
-    answer: {
-        a: "It logs the innerworkings of your code",
-        b: "It logs the list of consoles you own SONY4LYFE",
-        c: "It outputs a message to the web console for whatever value you choose",
-        d: "A js method that pulls up an element by whatever class or Id you choose"
-    },
-    correctAnswer: "c"
-} ,
-{
-    currentQuestion: "How do you create a function in JS?",
-    answer: {
-        a: "funtion: myFunction",
-        b: "function myFunction",
-        c: "function (myFunction)",
-        d: "Conjunction junction, what's your function?"
-    },
-    correctAnswer: "b"
-} ,
-];
+let choiceA = document.getElementById("")
 
 var startBtn = document.getElementById("start-btn");
 let insertQuestions = document.getElementById("questions");
@@ -65,7 +14,8 @@ var timeLeft = document.getElementById("seconds");
 var secondsLeft = 60;
 var yourResults = document.getElementsByClassName("results");
 let lastQuestionIndex = (questions.length-1);
-let runningQuestionIndex = 0; 
+let runningQuestionIndex = 0;
+let clickedAnswer = document.getElementById("A" || "B" || "C" || "D")
 let shuffledQuestions, currentQuestionIndex;
 
 console.log(questions)
@@ -75,7 +25,8 @@ function startGame() {
     answerChoices.classList.remove("hide");
     insertQuestions.classList.remove("hide");
     countdown () ;
-    generateQuiz () ;
+    shuffledQuestions = questions.sort(() => Math.random() - .5) ;
+    nextQuestion ();
     checkAnswer () ;
     console.log(score)
     console.log(secondsLeft)
@@ -93,23 +44,26 @@ function startGame() {
     // }
 }
 
+clickedAnswer.onclick = checkAnswer ();
+
 function generateQuiz (){
-    let q = questions[runningQuestionIndex];
-    insertQuestions.innerHTML = "<p>" + q.currentQuestion + "</p>";
-    choiceA.innerHTML = q.answer.a;
-    choiceB.innerHTML = q.answer.b;
-    choiceC.innerHTML = q.answer.c;
-    choiceD.innerHTML = q.answer.d;
-    console.log(q)
-}
+        let q = questions[runningQuestionIndex];
+        insertQuestions.innerHTML = "<p>" + q.currentQuestion + "</p>";
+        choiceA.innerHTML = q.answer.a;
+        choiceB.innerHTML = q.answer.b;
+        choiceC.innerHTML = q.answer.c;
+        choiceD.innerHTML = q.answer.d;
+        console.log(q)}
 
 function checkAnswer (answer) {
+
+    for (var i = 0; i < questions.length; i++)
     if(answer == questions[runningQuestionIndex].correctAnswer) {
         score ++
         console.log(score)
-    } else if {
-        newSecondsLeft = (secondsLeft - 5) 
-        console.log(secondsLeft)
+    } else {
+        generateQuiz ();
+        secondsLeft = (secondsLeft - 5)
     }
 }
 
@@ -129,6 +83,7 @@ function countdown() {
 //     decreasedSecondsLeft = countdown() 
 // }
 function nextQuestion() {
+    generateQuiz(shuffledQuestions[currentQuestionIndex])
 }
 
 // function countScore(answer) {
@@ -139,9 +94,7 @@ function nextQuestion() {
 //     }
 // }
 
-function nextQuestion() {
 
-}
 
 // function decreaseTime() {
 //     secondsLeft - 5
