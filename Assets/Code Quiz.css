@@ -6,3 +6,60 @@
 .hide {
     display: none;
 }
+
+.card {
+    text-align: center;
+}
+
+p {
+    font-size: 28px;
+    font-weight: bold;
+}
+.wrapper {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+header {
+    text-align: center;
+    padding: 20px;
+    padding-top: 0px;
+    color: hsl(206, 17%, 28%);
+  }
+  
+h2 {
+    text-align: center;
+    font-size: auto;
+  }
+
+#start-btn {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    font-size: 5vw;
+}
+
+#scoreBoard {
+    display: inline;
+    border-radius: 10px;
+}
+
+.choice button {
+    margin: auto;
+    text-align: justify center;
+    display: inline-block;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 15px;
+    margin: 16px 16px 16px 16px;
+    padding: 14px 14px; 
+}

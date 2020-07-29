@@ -9,25 +9,79 @@
     <link rel="stylesheet" href="Code Quiz.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <div id="questions-container" class="hide">
-            <div id="quizQuestions">asdf</div>
-            <div id="answer-choices" class="btn-grid">
-                <div class="buttons">
-                    <button class ="choice" id="A">asdf</button>
-                    <button class ="choice" id="B">asdf</button>
-                    <button class ="choice" id="C">adf</button>
-                    <button class ="choice" id="D">asdf</button>
-                    <button class="choice" id="nextButton">Next</button>
+    <div class="wrapper">
+        <header>
+          <h1>Code Quiz!</h1>
+        </header>
+        <div class="card">
+          <div class="card-header">
+            <h2>See if you can get the highscore!</h2>
+          </div>
+          <div class="card-body">
+            <div class="container-fluid">
+                <div id="questions-container" class="hide">
+                    <div id="quizQuestions">asdf</div>
+                    <div class="choice">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-inline-flex">
+                                    <button id="A">asdf</button>
+                                    <button id="B">asdf</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-inline-flex">
+                                    <button id="C">adf</button>
+                                    <button id="D">asdf</button>
+                                </div>
+                            </div>
+                        </div>
+                        <form method="POST" id = "submitScore">
+                            <div class="card">
+                                <h2>Highscores</h2>
+                                <p><strong>Scores</strong></p>
+                                <ul id="highScores"></ul>
+                              </div>
+                            <div class="input-group">
+                              <label for="initials">Initials</label>
+                              <input type="text" name="inputtedInitials" id="inputtedInitials" placeholder="AAA" />
+                            </div>
+                            <button id="submittedScore">Submit</button>
+                          </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="start">
+          <div class="card-footer">
             <button id="start-btn">Start!</button>
             <div id="timer" class="hide">
-                <div id="secondsLeft"></div>
-            </div>
+            <div id="secondsLeft"></div>
+          </div>
         </div>
+      </div>
+    <!-- <div class="container-fluid">
+        <div id="questions-container" class="hide">
+            <div id="quizQuestions">asdf</div>
+            <div class="btn-grid">
+                <div class="choice">
+                    <button id="A">asdf</button>
+                    <button id="B">asdf</button>
+                    <button id="C">adf</button>
+                    <button id="D">asdf</button>
+                </div>
+            </div>
+        </div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- <button id="start-btn">Start!</button>
+                    <div id="timer" class="hide">
+                    <div id="secondsLeft"></div> -->
+                    </div>
+                </div>
+            </div>
         <div class="results hide" id="showResults">
             <div id="currentScore">laskdj</div>
             <input id="initials" type="submit" value="Your Initials">

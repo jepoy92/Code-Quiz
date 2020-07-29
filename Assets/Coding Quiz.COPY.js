@@ -1,11 +1,9 @@
 var questionsContainer = document.getElementById("questions-container");
 var quizQuestions = document.getElementById("quizQuestions")
-var answerChoices = document.getElementById("answer-choices");
 let choiceA = document.getElementById("A");
 let choiceB = document.getElementById("B");
 let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
-var nextButton = document.getElementById("nextButton")
 var startContainer = document.getElementsByClassName("start");
 var startButton = document.getElementById("start-btn")
 var timer = document.getElementById("timer");
@@ -13,10 +11,16 @@ var secondsLeft = document.getElementById("secondsLeft");
 var results = document.getElementsByClassName("results");
 var currentScore = document.getElementById("currentScore");
 var logScore = document.getElementById("initials");
+var submittedScores = document.getElementById("submittedScores")
+var inputtedInitials = document.getElementById("inputtedInitials")
+var submittedScore = document.getElementById("submittedScore")
 var showResults = document.getElementById("showResults")
+var highScores = document.getElementById("highScores")
+var submitForm = document.getElementById("submitScore")
 var score = 0;
-var seconds = 60;
-var questionIndex = 0;
+var seconds = 100;
+var questionIndex = 6;
+var scores = [];
 
 var questions = [
     {
@@ -88,9 +92,8 @@ function startGame(){
         secondsLeft.innerText = seconds
         if (seconds === 0 ){
             clearInterval(timeInterval);
-            startButton.classList.add("hide")
-            timer.classList.remove("hide")
-            questionsContainer.classList.remove("hide")
+            timer.classList.add("hide")
+            questionsContainer.classList.add("hide")
         } 
     }, 1000)
     startButton.classList.add("hide")
@@ -105,51 +108,38 @@ function startGame(){
 
     
 function generateQuestions(){
-    if(questionIndex < 5) {
-        questionIndex = questionIndex + 1
-        let q = questions[questionIndex];
-        quizQuestions.innerHTML = q.currentQuestion;
-        choiceA.innerHTML = q.answer.a;
-        choiceB.innerHTML = q.answer.b;
-        choiceC.innerHTML = q.answer.c;
-        choiceD.innerHTML = q.answer.d;
-    } else {
+    if(questionIndex > 0) {
+        questionIndex = questionIndex  - 1
+        // for (var i = 0; i < questions.length; i++)
+        quizQuestions.innerHTML = questions[questionIndex].currentQuestion;
+        choiceA.innerHTML = questions[questionIndex].answer.a;
+        choiceB.innerHTML = questions[questionIndex].answer.b;
+        choiceC.innerHTML = questions[questionIndex].answer.c;
+        choiceD.innerHTML = questions[questionIndex].answer.d;
+        console.log(questionIndex)
+            } else{
         timer.classList.add("hide")
         questionsContainer.classList.add("hide")
     }   
 };
 
-function newQuestion(){
-    questionIndex = questionIndex + 1
-    if (questionIndex < questions.length+1) {
-        var q = questions[questionIndex];
-        quizQuestions.innerHTML = q.currentQuestion;
-        choiceA.innerHTML = q.answer.a;
-        choiceB.innerHTML = q.answer.b;
-        choiceC.innerHTML = q.answer.c;
-        choiceD.innerHTML = q.answer.d;
-    } else results();
-    console.log("working") 
-};
-
-
 function checkAnswer (answer) {
+    // for (var i = 0; i < questions.length; i++)
     if (answer === questions[questionIndex].correctAnswer) {
         score ++;
         seoncds = seconds += 2;
         generateQuestions();
         // console.log(score);
     } else 
-        seconds = seconds -= 2;
+        seconds = seconds -= 4;
         generateQuestions();
 }
 
-function submitInitials(){};
-
-console.log(results)
+function submitInitials(){
+    submittedScores.innerText = 1 + inputtedInitials
+};
 
 startButton.addEventListener("click", startGame);
-nextButton.addEventListener("click", newQuestion);
 
 choiceA.addEventListener("click", function(){
     checkAnswer('a')
@@ -164,3 +154,56 @@ choiceC.addEventListener("click", function(){
 choiceD.addEventListener("click", function(){
     checkAnswer('d')
 })
+
+renderLastHighscore();
+
+appendHighScores();
+
+function appendHighScores() {
+  highScores.innerHTML = "";
+
+  for (var i = 0; i < scores.length; i++) {
+    var score = scores[i];
+
+    var li = document.createElement("li");
+    li.textContent = score;
+    highScores.appendChild(li);
+  }
+}
+
+submitForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    var submitText = inputtedInitials.value.trim();
+  
+    // Return from function early if submitted todoText is blank
+    if (submitText === "") {
+      return;
+    }
+  
+    // Add new todoText to todos array, clear the input
+    scores.push(submitText);
+    inputtedInitials.value = "";
+  
+    // Re-render the list
+    appendHighScores();
+    renderLastHighscore();
+  });
+
+function renderLastHighscore() {
+  var initials = localStorage.getItem("initials");
+
+  if (!initials) {
+    return;
+  }
+  
+  highScores.textContent = initials + "" + "" + score;
+}
+
+submittedScore.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var initials = inputtedInitials.value;
+    localStorage.setItem("initials", initials);
+    renderLastHighscore();
+});
