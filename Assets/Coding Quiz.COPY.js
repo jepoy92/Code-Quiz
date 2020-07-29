@@ -1,10 +1,10 @@
 var questionsContainer = document.getElementById("questions-container");
 var quizQuestions = document.getElementById("quizQuestions")
 var answerChoices = document.getElementById("answer-choices");
-var choiceA = document.getElementById("A");
-var choiceB = document.getElementById("B");
-var choiceC = document.getElementById("C");
-var choiceD = document.getElementById("D");
+let choiceA = document.getElementById("A");
+let choiceB = document.getElementById("B");
+let choiceC = document.getElementById("C");
+let choiceD = document.getElementById("D");
 var nextButton = document.getElementById("nextButton")
 var startContainer = document.getElementsByClassName("start");
 var startButton = document.getElementById("start-btn")
@@ -69,24 +69,15 @@ var questions = [
 } ,
 ];
 
-let questionIndex = 0;
+var questionIndex = 0;
 let answerIndex = 0;
 
 function startGame(){
     startButton.classList.add("hide")
     timer.classList.remove("hide")
     questionsContainer.classList.remove("hide")
-    let s = seconds
-    var timeInterval = setInterval(function(){
-        s-- ;
-        secondsLeft.innerHTML = s;
-        if (s === 0) {
-            clearInterval(timeInterval);
-            results();   
-        }
-    },1000);
+    countdown();
     generateQuestions();
-    checkAnswer();
 };
 
 function generateQuestions(){
@@ -113,23 +104,36 @@ function newQuestion(){
 
 
 function checkAnswer (answer) {
-    for (var i = 0; i < questions[questionIndex].length; i++) 
     if (answer === questions[questionIndex].correctAnswer) {
         score ++
-        console.log(score)
-    } else { 
+    } else {
+        
     }
 }
-function countScore(){};
-
-function penalty (){};
 
 function submitInitials(){};
 
 function results () {
     showResults.classList.remove("hide")
 };
-    
+
+function penalty (seconds) {
+
+}
 
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", newQuestion);
+
+choiceA.addEventListener("click", function(){
+    checkAnswer('a')
+})
+
+choiceB.addEventListener("click", function(){
+    checkAnswer('b')
+})
+choiceC.addEventListener("click", function(){
+    checkAnswer('c')
+})
+choiceD.addEventListener("click", function(){
+    checkAnswer('d')
+})
