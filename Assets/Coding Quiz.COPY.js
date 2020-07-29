@@ -16,6 +16,8 @@ var logScore = document.getElementById("initials");
 var showResults = document.getElementById("showResults")
 var score = 0;
 var seconds = 60;
+var questionIndex = 0;
+
 var questions = [
     {
     currentQuestion: "What is Javascript?",
@@ -38,12 +40,12 @@ var questions = [
     correctAnswer: "c"
 } ,
 {
-    currentQuestion: "What is the correct html code to insert a line break?",
+    currentQuestion: "Which of the following answers is true of 'const', 'let', and 'var' once they're assigned?",
     answer: {
-        a: " <break> ",
-        b: " <lb> ",
-        c: " <bread> ",
-        d: " <br> ",
+        a: "'const' can never be re-declared and updated, 'let' can only be re-assigned within a function, and 'var' can only be assigned within a function",
+        b: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can only be assigned within a function",
+        c: "They're variables you can spell out in alphabet soup ",
+        d: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can be re-declared and updated throughout the document"
     },
     correctAnswer: "d"
 } ,
@@ -68,16 +70,6 @@ var questions = [
     correctAnswer: "a"
 } ,
 {
-    currentQuestion: "Which of the following answers is true of 'const', 'let', and 'var' once they're assigned?",
-    answer: {
-        a: "'const' can never be re-declared and updated, 'let' can only be re-assigned within a function, and 'var' can only be assigned within a function",
-        b: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can only be assigned within a function",
-        c: "They're variables you can spell out in alphabet soup ",
-        d: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can be re-declared and updated throughout the document"
-    },
-    correctAnswer: "d"
-} ,
-{
     currentQuestion: "What would console.log(rgb[1]) for var rgb = ['red', 'green', 'blue']; print to the console screen?",
     answer: {
         a: "red",
@@ -87,190 +79,74 @@ var questions = [
     },
     correctAnswer: "c"
 } ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
-{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,{
-    currentQuestion: "",
-    answer: {
-        a: "",
-        b: "",
-        c: "",
-        d: ""
-    },
-    correctAnswer: ""
-} ,
 ];
 
-var howManyQuestions = questions.length
-
-console.log(howManyQuestions);
-
-var questionIndex = (Math.floor(Math.random()*20));
-let answerIndex = 0;
-
 function startGame(){
-    countDown();
+    secondsLeft.innerText = seconds
+    var timeInterval = setInterval(function(){
+        seconds --
+        secondsLeft.innerText = seconds
+        if (seconds === 0 ){
+            clearInterval(timeInterval);
+            startButton.classList.add("hide")
+            timer.classList.remove("hide")
+            questionsContainer.classList.remove("hide")
+        } 
+    }, 1000)
     startButton.classList.add("hide")
     timer.classList.remove("hide")
     questionsContainer.classList.remove("hide")
     generateQuestions();
 };
 
+// questions = questions
+// for (let i = 0; i < questions.length; i++) 
+//     console.log(questions[i])
+
+    
 function generateQuestions(){
-    let q = questions[questionIndex];
-    quizQuestions.innerHTML = q.currentQuestion;
-    choiceA.innerHTML = q.answer.a;
-    choiceB.innerHTML = q.answer.b;
-    choiceC.innerHTML = q.answer.c;
-    choiceD.innerHTML = q.answer.d;
+    if(questionIndex < 5) {
+        questionIndex = questionIndex + 1
+        let q = questions[questionIndex];
+        quizQuestions.innerHTML = q.currentQuestion;
+        choiceA.innerHTML = q.answer.a;
+        choiceB.innerHTML = q.answer.b;
+        choiceC.innerHTML = q.answer.c;
+        choiceD.innerHTML = q.answer.d;
+    } else {
+        timer.classList.add("hide")
+        questionsContainer.classList.add("hide")
+    }   
 };
 
 function newQuestion(){
-    // let tillLastQuestion = questionIndex+(parseInt(Math.floor(Math.random()*5))) - 
-    let newQuestionIndex = questionIndex+Math.floor(Math.random()*5)
-    let q = questions[newQuestionIndex];
-    quizQuestions.innerHTML = q.currentQuestion;
-    choiceA.innerHTML = q.answer.a;
-    choiceB.innerHTML = q.answer.b;
-    choiceC.innerHTML = q.answer.c;
-    choiceD.innerHTML = q.answer.d;
-    console.log("working")
+    questionIndex = questionIndex + 1
+    if (questionIndex < questions.length+1) {
+        var q = questions[questionIndex];
+        quizQuestions.innerHTML = q.currentQuestion;
+        choiceA.innerHTML = q.answer.a;
+        choiceB.innerHTML = q.answer.b;
+        choiceC.innerHTML = q.answer.c;
+        choiceD.innerHTML = q.answer.d;
+    } else results();
+    console.log("working") 
 };
 
 
 function checkAnswer (answer) {
     if (answer === questions[questionIndex].correctAnswer) {
-        score ++
-        seoncds = seconds += 5;
-    } else seconds = seconds -= 5;
-        
+        score ++;
+        seoncds = seconds += 2;
+        generateQuestions();
+        // console.log(score);
+    } else 
+        seconds = seconds -= 2;
+        generateQuestions();
 }
-
-function countDown() {
-    var timeInterval = setInterval(function(){
-        seconds --
-        secondsLeft.innerText = seconds
-        if (seconds === 0 ){
-            clearInterval(timeInterval);
-        }
-    }, 1000);
-};
 
 function submitInitials(){};
 
-function results () {
-    showResults.classList.remove("hide")
-};
-
-function penalty (seconds) {
-
-}
+console.log(results)
 
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", newQuestion);
