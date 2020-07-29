@@ -58,25 +58,167 @@ var questions = [
     correctAnswer: "c"
 } ,
 {
-    currentQuestion: "How do you create a function in JS?",
+    currentQuestion: "How do you code a 'for' loop?",
     answer: {
-        a: "funtion: myFunction",
-        b: "function myFunction",
-        c: "function (myFunction)",
-        d: "Conjunction junction, what's your function?"
+        a: "for(var i = 0; i < array.length; i++){\n const element = array[i]",
+        b: "for(var = i; i < array.length; i++){\n const element = array[i]",
+        c: "for(var = i; i < 0; i++){\n const element = array[i]",
+        d: "forget to add 'get' to forget and then do it a bunch of times"
     },
-    correctAnswer: "b"
+    correctAnswer: "a"
+} ,
+{
+    currentQuestion: "Which of the following answers is true of 'const', 'let', and 'var' once they're assigned?",
+    answer: {
+        a: "'const' can never be re-declared and updated, 'let' can only be re-assigned within a function, and 'var' can only be assigned within a function",
+        b: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can only be assigned within a function",
+        c: "They're variables you can spell out in alphabet soup ",
+        d: "'const' can never be re-declared and updated, 'let' can be updated but not re-declared, and 'var' can be re-declared and updated throughout the document"
+    },
+    correctAnswer: "d"
+} ,
+{
+    currentQuestion: "What would console.log(rgb[1]) for var rgb = ['red', 'green', 'blue']; print to the console screen?",
+    answer: {
+        a: "red",
+        b: "blue",
+        c: "green",
+        d: "yellow"
+    },
+    correctAnswer: "c"
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,
+{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
+} ,{
+    currentQuestion: "",
+    answer: {
+        a: "",
+        b: "",
+        c: "",
+        d: ""
+    },
+    correctAnswer: ""
 } ,
 ];
 
-var questionIndex = 0;
+var howManyQuestions = questions.length
+
+console.log(howManyQuestions);
+
+var questionIndex = (Math.floor(Math.random()*20));
 let answerIndex = 0;
 
 function startGame(){
+    countDown();
     startButton.classList.add("hide")
     timer.classList.remove("hide")
     questionsContainer.classList.remove("hide")
-    countdown();
     generateQuestions();
 };
 
@@ -93,7 +235,6 @@ function newQuestion(){
     // let tillLastQuestion = questionIndex+(parseInt(Math.floor(Math.random()*5))) - 
     let newQuestionIndex = questionIndex+Math.floor(Math.random()*5)
     let q = questions[newQuestionIndex];
-    for (var i = newQuestionIndex; i < 5; i++)
     quizQuestions.innerHTML = q.currentQuestion;
     choiceA.innerHTML = q.answer.a;
     choiceB.innerHTML = q.answer.b;
@@ -106,10 +247,20 @@ function newQuestion(){
 function checkAnswer (answer) {
     if (answer === questions[questionIndex].correctAnswer) {
         score ++
-    } else {
+        seoncds = seconds += 5;
+    } else seconds = seconds -= 5;
         
-    }
 }
+
+function countDown() {
+    var timeInterval = setInterval(function(){
+        seconds --
+        secondsLeft.innerText = seconds
+        if (seconds === 0 ){
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+};
 
 function submitInitials(){};
 
