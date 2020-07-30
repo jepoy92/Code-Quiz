@@ -15,7 +15,6 @@ var submittedScores = document.getElementById("submittedScores")
 var inputtedInitials = document.getElementById("inputtedInitials")
 var submittedScore = document.getElementById("submittedScore")
 var showResults = document.getElementById("showResults")
-var highScoresSpan = document.getElementById("highScores")
 var scoreBoard = document.getElementById("scoreBoard")
 var submitForm = document.getElementById("submitScore")
 var score = 0;
@@ -153,7 +152,7 @@ function appendHighScores() {
   scoreBoard.innerText = "";
 
   for (var i = 0; i < addToScoreboard.length; i++) {
-    var newScore = addToScoreboard[i] + ;
+    var newScore = addToScoreboard[i] + score
 
     var p = document.createElement("p");
     p.textContent = newScore;
