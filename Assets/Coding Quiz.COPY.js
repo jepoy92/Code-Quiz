@@ -15,12 +15,13 @@ var submittedScores = document.getElementById("submittedScores")
 var inputtedInitials = document.getElementById("inputtedInitials")
 var submittedScore = document.getElementById("submittedScore")
 var showResults = document.getElementById("showResults")
-var highScores = document.getElementById("highScores")
+var highScoresSpan = document.getElementById("highScores")
+var scoreBoard = document.getElementById("scoreBoard")
 var submitForm = document.getElementById("submitScore")
 var score = 0;
-var seconds = 100;
+var seconds = 10000;
 var questionIndex = 6;
-var scores = [];
+var addToScoreboard = [];
 
 var questions = [
     {
@@ -102,15 +103,10 @@ function startGame(){
     generateQuestions();
 };
 
-// questions = questions
-// for (let i = 0; i < questions.length; i++) 
-//     console.log(questions[i])
-
     
 function generateQuestions(){
     if(questionIndex > 0) {
         questionIndex = questionIndex  - 1
-        // for (var i = 0; i < questions.length; i++)
         quizQuestions.innerHTML = questions[questionIndex].currentQuestion;
         choiceA.innerHTML = questions[questionIndex].answer.a;
         choiceB.innerHTML = questions[questionIndex].answer.b;
@@ -124,20 +120,14 @@ function generateQuestions(){
 };
 
 function checkAnswer (answer) {
-    // for (var i = 0; i < questions.length; i++)
     if (answer === questions[questionIndex].correctAnswer) {
         score ++;
         seoncds = seconds += 2;
         generateQuestions();
-        // console.log(score);
     } else 
         seconds = seconds -= 4;
         generateQuestions();
 }
-
-function submitInitials(){
-    submittedScores.innerText = 1 + inputtedInitials
-};
 
 startButton.addEventListener("click", startGame);
 
@@ -160,14 +150,15 @@ renderLastHighscore();
 appendHighScores();
 
 function appendHighScores() {
-  highScores.innerHTML = "";
+  scoreBoard.innerText = "";
 
-  for (var i = 0; i < scores.length; i++) {
-    var score = scores[i];
+  for (var i = 0; i < addToScoreboard.length; i++) {
+    var newScore = addToScoreboard[i] + ;
 
-    var li = document.createElement("li");
-    li.textContent = score;
-    highScores.appendChild(li);
+    var p = document.createElement("p");
+    p.textContent = newScore;
+    scoreBoard.append(p);
+    console.log(p);
   }
 }
 
@@ -182,12 +173,13 @@ submitForm.addEventListener("submit", function(event) {
     }
   
     // Add new todoText to todos array, clear the input
-    scores.push(submitText);
+    addToScoreboard.push(submitText);
     inputtedInitials.value = "";
   
     // Re-render the list
     appendHighScores();
     renderLastHighscore();
+    console.log(appendHighScores)
   });
 
 function renderLastHighscore() {
@@ -197,13 +189,6 @@ function renderLastHighscore() {
     return;
   }
   
-  highScores.textContent = initials + "" + "" + score;
+  scoreBoard.textContent = initials + score;
+  appendHighScores();
 }
-
-submittedScore.addEventListener("click", function(event) {
-  event.preventDefault();
-
-  var initials = inputtedInitials.value;
-    localStorage.setItem("initials", initials);
-    renderLastHighscore();
-});
