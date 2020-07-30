@@ -15,12 +15,16 @@ var submittedScores = document.getElementById("submittedScores")
 var inputtedInitials = document.getElementById("inputtedInitials")
 var submittedScore = document.getElementById("submittedScore")
 var showResults = document.getElementById("showResults")
+var highScoresSpan = document.getElementById("highScoresSpan")
 var scoreBoard = document.getElementById("scoreBoard")
 var submitForm = document.getElementById("submitScore")
+var submitBtn = document.getElementById("submit")
+var yourScore = document.getElementById("yourScore")
 var score = 0;
 var seconds = 10000;
 var questionIndex = 6;
 var addToScoreboard = [];
+var scoreArray = []
 
 var questions = [
     {
@@ -123,6 +127,7 @@ function checkAnswer (answer) {
         score ++;
         seoncds = seconds += 2;
         generateQuestions();
+        yourScore.innerText = score;
     } else 
         seconds = seconds -= 4;
         generateQuestions();
@@ -152,42 +157,77 @@ function appendHighScores() {
   scoreBoard.innerText = "";
 
   for (var i = 0; i < addToScoreboard.length; i++) {
-    var newScore = addToScoreboard[i] + score
-
-    var p = document.createElement("p");
-    p.textContent = newScore;
-    scoreBoard.append(p);
-    console.log(p);
+    var newInitials = addToScoreboard[i]
+    var newScore = score
+    var initP = document.createElement("p");
+    var scoreP = document.createElement("p");
+    initP.textContent = newInitials;
+    scoreP.textContent = newScore;
+    scoreBoard.append(initP);
+    scoreBoard.append(initP)
+    console.log(initP);
+    console.log(scoreP);
   }
 }
 
-submitForm.addEventListener("submit", function(event) {
+function storeScores  () {};
+
+submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
   
-    var submitText = inputtedInitials.value.trim();
+    var submitText = {
+        initials: inputtedInitials.value.trim(),
+        score: score, 
+    }
   
     // Return from function early if submitted todoText is blank
     if (submitText === "") {
       return;
     }
-  
+
     // Add new todoText to todos array, clear the input
-    addToScoreboard.push(submitText);
+    addToScoreboard.push(submitText.initials);
+    addToScoreboard.push(submitText.score);
     inputtedInitials.value = "";
-  
+    console.log(submitText)
     // Re-render the list
+    
+    if (localStorage.getItem("scores") !== localStorage.getItem("scores")) {
+        localStorage.getItem("scores")
+      } else localStorage.setItem("scores", JSON.stringify(submitText))
+    // localStorage.setItem("score", JSON.stringify(submitText.score))
+
     appendHighScores();
-    renderLastHighscore();
-    console.log(appendHighScores)
+    // renderLastHighscore();
+
   });
 
-function renderLastHighscore() {
-  var initials = localStorage.getItem("initials");
+// submitForm.addEventListener("submit", function(event) {
+//     event.preventDefault();
+  
+//     var submitText = inputtedInitials.value.trim();
+  
+//     // Return from function early if submitted todoText is blank
+//     if (submitText === "") {
+//       return;
+//     }
+  
+//     // Add new todoText to todos array, clear the input
+//     addToScoreboard.push(submitText);
+//     inputtedInitials.value = "";
+  
+//     // Re-render the list
+//     appendHighScores();
+    
+//     console.log(appendHighScores)
+//   });
 
+function renderLastHighscore() {
+
+  var initials = localStorage.getItem("inputtedInitials");
+//   var myEntries = localStorage.setItem("initials", )
   if (!initials) {
     return;
   }
-  
-  scoreBoard.textContent = initials + score;
-  appendHighScores();
+  localStorage.setItem("initials", initials)
 }
