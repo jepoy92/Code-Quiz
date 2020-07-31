@@ -1,5 +1,7 @@
 var questionsContainer = document.getElementById("questions-container");
+var scoreBoardContainer = document.getElementById("scoreBoardContainer")
 var quizQuestions = document.getElementById("quizQuestions")
+var headerContainer = document.getElementsByTagName("headerContainer")
 let choiceA = document.getElementById("A");
 let choiceB = document.getElementById("B");
 let choiceC = document.getElementById("C");
@@ -17,25 +19,25 @@ var submittedScore = document.getElementById("submittedScore")
 var showResults = document.getElementById("showResults")
 var highScoresSpan = document.getElementById("highScoresSpan")
 var scoreBoard = document.getElementById("scoreBoard")
-var submitForm = document.getElementById("submitScore")
+var newGame = document.getElementById("newGame")
 var submitBtn = document.getElementById("submit")
 var yourScore = document.getElementById("yourScore")
 var score = 0;
-var seconds = 10000;
-var questionIndex = 6;
+var seconds = 30;
+var questionIndex = 11;
 var addToScoreboard = [];
 var scoreArray = []
 
 var questions = [
     {
-    currentQuestion: "What is Javascript?",
+    currentQuestion: "Which of the following is the correct way to start wrting a while loop?",
     answer: {
-        a: "A scripting or programming language that allows you to implement complex features on web pages",
-        b: "A cascading style sheet used to manipulate HTML code",
-        c: "A secret menu item from Starbucks",
-        d: "A library of code designed to simpfly HTML DOM tree traversal"
+        a: "while( i<10; i++)",
+        b: "while( i < 10)",
+        c: "while(var i = 0; i < 0; i++",
+        d: "while()"
     },
-    correctAnswer:"a"
+    correctAnswer:"b"
 } ,
 {
     currentQuestion: "What is const?",
@@ -87,17 +89,93 @@ var questions = [
     },
     correctAnswer: "c"
 } ,
+{
+  currentQuestion: "How do you add an event listener for var btn so that it activates on click?",
+  answer: {
+      a: "var.addeventlistener('click', function())",
+      b: "btn.addeventlistener('click', function())",
+      c: "onClick(function()",
+      d: "addeventlistener+bar(function())"
+  },
+  correctAnswer: "b"
+} ,
+{
+  currentQuestion: "How do you create a prompt alert to ask the user what their favorite food is?",
+  answer: {
+      a: "You poke them and then ask them politely",
+      b: "addEventListener('prompt',askFaveFood)",
+      c: "function prompt ('What's your favorite food?')",
+      d: "prompt('What's your favorite food?')",
+  },
+  correctAnswer: "d"
+} ,
+{
+  currentQuestion: "How do you write 'Hello World' in an alert box?",
+
+  answer: {
+      a: "msg('Hello World');",
+      b: "alertBox('Hello World');",
+      c: "alert('Hello World');",
+      d: "msgBox('Hello World');",
+  },
+  correctAnswer: "c"
+} ,
+{
+  currentQuestion: "How to write an IF statement for executing some code if 'i' is NOT equal to 5? ",
+
+  answer: {
+      a: "if i =! 5",
+      b: "if i != 5",
+      c: "if i <> 5",
+      d: "if i not 5",
+  },
+  correctAnswer: "b"
+} ,
+{
+  currentQuestion: "What is Javascript?",
+  answer: {
+      a: "A scripting or programming language that allows you to implement complex features on web pages",
+      b: "A cascading style sheet used to manipulate HTML code",
+      c: "A secret menu item from Starbucks",
+      d: "A library of code designed to simpfly HTML DOM tree traversal"
+  },
+  correctAnswer:"a"
+} ,
 ];
+
+function startNewGame() {
+  secondsLeft.innerText = seconds
+  var timeInterval = setInterval(function(){
+      seconds --
+      secondsLeft.innerText = seconds
+      if (seconds <= 0 ){
+          clearInterval(timeInterval);
+          timer.classList.add("hide")
+          questionsContainer.classList.add("hide")
+          scoreBoardContainer.classList.remove("hide")
+      } 
+  }, 1000)
+  headerContainer.classList.add("hide")
+  startButton.classList.add("hide")
+  timer.classList.remove("hide")
+  questionsContainer.classList.remove("hide")
+  score = 0
+  seconds = 30
+  questionIndex = 6
+  generateQuestions();
+  scoreBoardContainer.classList.add("hide")
+}
 
 function startGame(){
     secondsLeft.innerText = seconds
     var timeInterval = setInterval(function(){
         seconds --
         secondsLeft.innerText = seconds
-        if (seconds === 0 ){
+        if (seconds <= 0 ){
             clearInterval(timeInterval);
             timer.classList.add("hide")
             questionsContainer.classList.add("hide")
+            scoreBoardContainer.classList.remove("hide")
         } 
     }, 1000)
     startButton.classList.add("hide")
@@ -119,6 +197,7 @@ function generateQuestions(){
             } else{
         timer.classList.add("hide")
         questionsContainer.classList.add("hide")
+        scoreBoardContainer.classList.remove("hide")
     }   
 };
 
@@ -127,7 +206,6 @@ function checkAnswer (answer) {
         score ++;
         seoncds = seconds += 2;
         generateQuestions();
-        yourScore.innerText = score;
     } else 
         seconds = seconds -= 4;
         generateQuestions();
@@ -149,24 +227,21 @@ choiceD.addEventListener("click", function(){
     checkAnswer('d')
 })
 
-renderLastHighscore();
+// renderLastHighscore();
 
 appendHighScores();
 
 function appendHighScores() {
   scoreBoard.innerText = "";
 
-  for (var i = 0; i < addToScoreboard.length; i++) {
-    var newScore = localStorage.getItem("scores")
+  for (var i = 0; i < localStorage.length; i++) {
+    var newScore = localStorage.getItem("scores");
     var scoreP = document.createElement("p");
     scoreP.textContent = newScore;
     scoreBoard.append(scoreP)
-    console.log(initP);
-    console.log(scoreP);
+    console.log(newScore);
   }
 }
-
-function storeScores  () {};
 
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
@@ -177,8 +252,8 @@ submitBtn.addEventListener("click", function(event) {
     }
     
     var scoreboardKeeper = {
-      "initials": submitText.initials,
-      "scores": submitText.score
+      initials: submitText.initials,
+      scores: submitText.score
     }
     // Return from function early if submitted todoText is blank
     if (submitText === "") {
@@ -195,33 +270,8 @@ submitBtn.addEventListener("click", function(event) {
     // localStorage.setItem("score", JSON.stringify(submitText.score))
 
     appendHighScores();
-    renderLastHighscore();
+    // renderLastHighscore();
 
   });
 
-// submitForm.addEventListener("submit", function(event) {
-//     event.preventDefault();
-  
-//     var submitText = inputtedInitials.value.trim();
-  
-//     // Return from function early if submitted todoText is blank
-//     if (submitText === "") {
-//       return;
-//     }
-  
-//     // Add new todoText to todos array, clear the input
-//     addToScoreboard.push(submitText);
-//     inputtedInitials.value = "";
-  
-//     // Re-render the list
-//     appendHighScores();
-    
-//     console.log(appendHighScores)
-//   });
-
-function renderLastHighscore() {
-//   var myEntries = localStorage.setItem("initials", )
-  if (localStorage.key("scores")) {
-    console.log(JSON.stringify(localStorage.key("scores")))
-  }
-}
+  newGame.addEventListener("click", startNewGame)

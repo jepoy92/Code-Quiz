@@ -11,58 +11,60 @@
 <body>
     <div class="wrapper">
         <header>
-          <h1>Code Quiz!</h1>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <div id="timer" class="hide">
+                  <span id="secondsLeft"></span>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <h1>Code Quiz!</h1>
+              </div>
+            </div>
+          </div>
         </header>
         <div class="card">
-          <div class="card-header">
-            <h2>See if you can get the highscore!</h2>
-          </div>
           <div class="card-body">
             <div class="container-fluid">
                 <div id="questions-container" class="hide">
-                    <div id="quizQuestions">asdf</div>
+                  <div class="card-header">
+                    <div id="quizQuestions"></div>
+                  </div>  
                     <div class="choice">
                         <div class="container">
                             <div class="row">
-                                <div class="col-inline-flex">
-                                    <button id="A">asdf</button>
-                                    <button id="B">asdf</button>
+                                <div class="col-lg-3">
+                                    <button id="A"></button>
+                                    <button id="B"></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-inline-flex">
-                                    <button id="C">adf</button>
-                                    <button id="D">asdf</button>
-                                </div>
+                        <div class="class">
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <button id="C"></button>
+                              <button id="D"></button>
                             </div>
-                        </div>
-                        <form method="POST" id = "submitScore">
-                            <div class="card">
-                                <h1>Here's your score!</h1>
-                                <div id="yourScore"></div>
-                            </div>
-                            <div class="card">
-                                <h2>Highscores</h2>
-                                <!-- <p><strong>Scores</strong><span id="highScores"></span></p>
-                                <p></p> -->
-                                <p><strong>Scores</strong><span id="highScoresSpan"></span></p>
-                                <p id="scoreBoard"></p>
-                              </div>
-                              <label for="initials">Initials</label>
-                              <input type="text" name="inputtedInitials" id="inputtedInitials" placeholder="AAA" />
-                            <button id="submit">Submit</button>
-                          </form>
+                          </div>
                         </div>
                     </div>
                 </div>
-            </div>
-          <div class="card-footer">
+                <div id="scoreBoardContainer" class="hide">
+                  <div class="card">
+                    <DIV class="card-header"><p><strong>Scores</strong><span id="highScoresSpan"></span></p>
+                      <div class="card-footer"><label for="initials">Initials</label>
+                        <input type="text" name="inputtedInitials" id="inputtedInitials" placeholder="AAA" />
+                        <div class="scoreBoardScreen">
+                          <button id="submit">Submit</button> <button id="newGame">New Game</button>
+                        </div>
+                      </div>
+                    </DIV>
+                    <p id="scoreBoard"></p>
+                  </div>
+                </div>
+          <div class="card">
             <button id="start-btn">Start!</button>
-            <div id="timer" class="hide">
-            <span id="secondsLeft"></span>
-          </div>
         </div>
       </div>
     </div>
