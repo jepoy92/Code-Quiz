@@ -157,14 +157,14 @@ function appendHighScores() {
   scoreBoard.innerText = "";
 
   for (var i = 0; i < addToScoreboard.length; i++) {
-    var newInitials = addToScoreboard[i]
-    var newScore = score
+    var newInitials = addToScoreboard[i].initials
+    var newScore = addToScoreboard[i].score
     var initP = document.createElement("p");
     var scoreP = document.createElement("p");
     initP.textContent = newInitials;
     scoreP.textContent = newScore;
     scoreBoard.append(initP);
-    scoreBoard.append(initP)
+    scoreBoard.append(scoreP)
     console.log(initP);
     console.log(scoreP);
   }
@@ -174,10 +174,12 @@ function storeScores  () {};
 
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
-  
+    
+    inputtedInitials.value = "";
+    
     var submitText = {
         initials: inputtedInitials.value.trim(),
-        score: score, 
+        score: score
     }
   
     // Return from function early if submitted todoText is blank
@@ -186,17 +188,19 @@ submitBtn.addEventListener("click", function(event) {
     }
 
     // Add new todoText to todos array, clear the input
-    addToScoreboard.push(submitText.initials);
-    addToScoreboard.push(submitText.score);
-    inputtedInitials.value = "";
-    console.log(submitText)
+
+    var scoreboardKeeper ={
+        "initials": submitText.initials,
+        "score": submitText.score
+    }
+    addToScoreboard.push(scoreboardKeeper);
+    console.log(JSON.stringify(scoreboardKeeper))
     // Re-render the list
     
-    if (localStorage.getItem("scores") !== localStorage.getItem("scores")) {
-        localStorage.getItem("scores")
-      } else localStorage.setItem("scores", JSON.stringify(submitText))
+    localStorage.setItem("scores", JSON.stringify(addToScoreboard))
     // localStorage.setItem("score", JSON.stringify(submitText.score))
 
+    renderLastHighscore();
     appendHighScores();
     // renderLastHighscore();
 
@@ -224,10 +228,10 @@ submitBtn.addEventListener("click", function(event) {
 
 function renderLastHighscore() {
 
-  var initials = localStorage.getItem("inputtedInitials");
-//   var myEntries = localStorage.setItem("initials", )
-  if (!initials) {
-    return;
-  }
-  localStorage.setItem("initials", initials)
+  var initials = localStorage.getItem(scores.initials);
+  var score = localStorage.getItem("scores");
+
+    
+console.log(initials)
+console.log(score)
 }
