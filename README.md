@@ -1,42 +1,80 @@
-# 04 Web APIs: Code Quiz
+# Code Quiz
 
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+# Description
 
-## User Story
+A timed code quiz with multiple-choice questions, this app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
 
-```
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+## Table of Contents
 
-## Acceptance Criteria
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-```
 
-The following animation demonstrates the application functionality:
+## Installation
 
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
+No installation required, app runs in the browser following the link below
 
-### Review
+[Deployed app](https://jepoy92.github.io/Code-Quiz/)
 
-You are required to submit the following for review:
+## Usage 
 
-* The URL of the functional, deployed application.
+A quiz app that you can use to test your knowledge of code!
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+## License
+  
+  
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+  For more information on the license used, please click on the link below:
+
+- [License] (https://opensource.org/licenses/GPL-3.0)
+
+
+
+## Contributing
+
+## Thank you to my wonderful study group! Please follow their githubs down below!
+
+- [Zachary Bryan](https://github.com/zacharybryan)
+- [Tim Sanders](https://github.com/tbsanders5)
+- [Nick Konzen](https://github.com/NTKonzen)
+- [Kira Bismuth Lowrey](https://github.com/KILowrey)
+- [Nancy Lambert-Brown](https://github.com/n-lambert)
+- [Mando Estrada](https://github.com/Mando619)
+- [Talia Vazquez](https://github.com/taliavazquez)
+- [Perry Theobald](https://github.com/perrytjr)
+- [Jeneth Diestra](https://github.com/jen6one9)
+- [Matthew Rogers](https://github.com/Rogers-Development-Services)
+- [Clyde Baron Rapinan](https://github.com/clydebaron2000)
+- [Johnny Lieu](https://github.com/johnnylieu)
+- [Robert Graham](https://github.com/Robmgraham)
+- [Plover Brown](https://github.com/rebgrasshopper)
+- [Talia Vazquez](https://github.com/taliavazquez)
+- [Nancy Lambert-Brown](https://github.com/n-lambert)
+- [Zachary Bryan](https://github.com/zacharybryan)
+- [Perry Theobald](https://github.com/perrytjr)
+- [Tim Sanders](https://github.com/tbsanders5)
+- [Jeneth Diesta](https://github.com/jen6one9)
+- [Matthew Rogers](https://github.com/Rogers-Development-Services)
+- [Mando Estrada](https://github.com/Mando619)
+- [Clyde Baron Rapinan](https://github.com/clydebaron2000)
+- [Johnny Lieu](https://github.com/johnnylieu)
+- [Robert Graham](https://github.com/Robmgraham)
+
+## Tests 
+
+NONE
+
+## Questions
+
+  For questions concerning my apps, click on the link below for my github:
+
+  [Github Link] (https://github.com/jepoy92)
+
+  Or click the link below for my email:
+
+  [Email] (jeffrey1choi@gmail.com)
